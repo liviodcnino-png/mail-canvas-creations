@@ -58,7 +58,7 @@ function NavItem({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       onClick={onNavigate}
       className={linkClass}
       activeOptions={{ exact: to === "/" || to === "/admin" }}
