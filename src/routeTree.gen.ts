@@ -12,10 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdiadosRouteImport } from './routes/adiados'
 import { Route as ArquivadosRouteImport } from './routes/arquivados'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as ContasRouteImport } from './routes/contas'
 import { Route as ContatosRouteImport } from './routes/contatos'
 import { Route as EnviadosRouteImport } from './routes/enviados'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as LixeiraRouteImport } from './routes/lixeira'
+import { Route as MinhaContaRouteImport } from './routes/minha-conta'
 import { Route as RascunhosRouteImport } from './routes/rascunhos'
 import { Route as SpamRouteImport } from './routes/spam'
 import { Route as PastaSlugRouteImport } from './routes/pasta.$slug'
@@ -33,6 +36,16 @@ const AdiadosRoute = AdiadosRouteImport.update({
 const ArquivadosRoute = ArquivadosRouteImport.update({
   id: '/arquivados',
   path: '/arquivados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContasRoute = ContasRouteImport.update({
+  id: '/contas',
+  path: '/contas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatosRoute = ContatosRouteImport.update({
@@ -55,6 +68,11 @@ const LixeiraRoute = LixeiraRouteImport.update({
   path: '/lixeira',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MinhaContaRoute = MinhaContaRouteImport.update({
+  id: '/minha-conta',
+  path: '/minha-conta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RascunhosRoute = RascunhosRouteImport.update({
   id: '/rascunhos',
   path: '/rascunhos',
@@ -75,10 +93,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
   '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
   '/pasta/$slug': typeof PastaSlugRoute
@@ -87,10 +108,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
   '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
   '/pasta/$slug': typeof PastaSlugRoute
@@ -100,10 +124,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
   '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
   '/pasta/$slug': typeof PastaSlugRoute
@@ -114,10 +141,13 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
     | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
+    | '/minha-conta'
     | '/rascunhos'
     | '/spam'
     | '/pasta/$slug'
@@ -126,10 +156,13 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
     | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
+    | '/minha-conta'
     | '/rascunhos'
     | '/spam'
     | '/pasta/$slug'
@@ -138,10 +171,13 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
     | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
+    | '/minha-conta'
     | '/rascunhos'
     | '/spam'
     | '/pasta/$slug'
@@ -151,10 +187,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdiadosRoute: typeof AdiadosRoute
   ArquivadosRoute: typeof ArquivadosRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  ContasRoute: typeof ContasRoute
   ContatosRoute: typeof ContatosRoute
   EnviadosRoute: typeof EnviadosRoute
   FavoritosRoute: typeof FavoritosRoute
   LixeiraRoute: typeof LixeiraRoute
+  MinhaContaRoute: typeof MinhaContaRoute
   RascunhosRoute: typeof RascunhosRoute
   SpamRoute: typeof SpamRoute
   PastaSlugRoute: typeof PastaSlugRoute
@@ -181,6 +220,20 @@ declare module '@tanstack/react-router' {
       path: '/arquivados'
       fullPath: '/arquivados'
       preLoaderRoute: typeof ArquivadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contas': {
+      id: '/contas'
+      path: '/contas'
+      fullPath: '/contas'
+      preLoaderRoute: typeof ContasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contatos': {
@@ -211,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LixeiraRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/minha-conta': {
+      id: '/minha-conta'
+      path: '/minha-conta'
+      fullPath: '/minha-conta'
+      preLoaderRoute: typeof MinhaContaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rascunhos': {
       id: '/rascunhos'
       path: '/rascunhos'
@@ -239,10 +299,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdiadosRoute: AdiadosRoute,
   ArquivadosRoute: ArquivadosRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  ContasRoute: ContasRoute,
   ContatosRoute: ContatosRoute,
   EnviadosRoute: EnviadosRoute,
   FavoritosRoute: FavoritosRoute,
   LixeiraRoute: LixeiraRoute,
+  MinhaContaRoute: MinhaContaRoute,
   RascunhosRoute: RascunhosRoute,
   SpamRoute: SpamRoute,
   PastaSlugRoute: PastaSlugRoute,
