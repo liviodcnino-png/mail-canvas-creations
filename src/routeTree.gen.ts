@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdiadosRouteImport } from './routes/adiados'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ArquivadosRouteImport } from './routes/arquivados'
 import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as ContasRouteImport } from './routes/contas'
@@ -21,6 +22,7 @@ import { Route as LixeiraRouteImport } from './routes/lixeira'
 import { Route as MinhaContaRouteImport } from './routes/minha-conta'
 import { Route as RascunhosRouteImport } from './routes/rascunhos'
 import { Route as SpamRouteImport } from './routes/spam'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as PastaSlugRouteImport } from './routes/pasta.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -31,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdiadosRoute = AdiadosRouteImport.update({
   id: '/adiados',
   path: '/adiados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArquivadosRoute = ArquivadosRouteImport.update({
@@ -83,6 +90,11 @@ const SpamRoute = SpamRouteImport.update({
   path: '/spam',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
 const PastaSlugRoute = PastaSlugRouteImport.update({
   id: '/pasta/$slug',
   path: '/pasta/$slug',
@@ -92,6 +104,7 @@ const PastaSlugRoute = PastaSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
   '/arquivados': typeof ArquivadosRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
@@ -102,11 +115,13 @@ export interface FileRoutesByFullPath {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
   '/arquivados': typeof ArquivadosRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
@@ -117,12 +132,14 @@ export interface FileRoutesByTo {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
   '/arquivados': typeof ArquivadosRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
@@ -133,6 +150,7 @@ export interface FileRoutesById {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/adiados'
+    | '/admin'
     | '/arquivados'
     | '/configuracoes'
     | '/contas'
@@ -150,11 +169,13 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/usuarios'
     | '/pasta/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/adiados'
+    | '/admin'
     | '/arquivados'
     | '/configuracoes'
     | '/contas'
@@ -165,11 +186,13 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/usuarios'
     | '/pasta/$slug'
   id:
     | '__root__'
     | '/'
     | '/adiados'
+    | '/admin'
     | '/arquivados'
     | '/configuracoes'
     | '/contas'
@@ -180,12 +203,14 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/usuarios'
     | '/pasta/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdiadosRoute: typeof AdiadosRoute
+  AdminRoute: typeof AdminRouteWithChildren
   ArquivadosRoute: typeof ArquivadosRoute
   ConfiguracoesRoute: typeof ConfiguracoesRoute
   ContasRoute: typeof ContasRoute
@@ -213,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/adiados'
       fullPath: '/adiados'
       preLoaderRoute: typeof AdiadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/arquivados': {
@@ -285,6 +317,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/pasta/$slug': {
       id: '/pasta/$slug'
       path: '/pasta/$slug'
@@ -295,9 +334,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminUsuariosRoute: AdminUsuariosRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdiadosRoute: AdiadosRoute,
+  AdminRoute: AdminRouteWithChildren,
   ArquivadosRoute: ArquivadosRoute,
   ConfiguracoesRoute: ConfiguracoesRoute,
   ContasRoute: ContasRoute,
