@@ -10,33 +10,278 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdiadosRouteImport } from './routes/adiados'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ArquivadosRouteImport } from './routes/arquivados'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as ContasRouteImport } from './routes/contas'
+import { Route as ContatosRouteImport } from './routes/contatos'
+import { Route as EnviadosRouteImport } from './routes/enviados'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as LixeiraRouteImport } from './routes/lixeira'
+import { Route as MinhaContaRouteImport } from './routes/minha-conta'
+import { Route as RascunhosRouteImport } from './routes/rascunhos'
+import { Route as SpamRouteImport } from './routes/spam'
+import { Route as AdminArmazenamentoRouteImport } from './routes/admin.armazenamento'
+import { Route as AdminContasRouteImport } from './routes/admin.contas'
+import { Route as AdminDominiosRouteImport } from './routes/admin.dominios'
+import { Route as AdminEstatisticasRouteImport } from './routes/admin.estatisticas'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
+import { Route as PastaSlugRouteImport } from './routes/pasta.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdiadosRoute = AdiadosRouteImport.update({
+  id: '/adiados',
+  path: '/adiados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArquivadosRoute = ArquivadosRouteImport.update({
+  id: '/arquivados',
+  path: '/arquivados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContasRoute = ContasRouteImport.update({
+  id: '/contas',
+  path: '/contas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatosRoute = ContatosRouteImport.update({
+  id: '/contatos',
+  path: '/contatos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnviadosRoute = EnviadosRouteImport.update({
+  id: '/enviados',
+  path: '/enviados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LixeiraRoute = LixeiraRouteImport.update({
+  id: '/lixeira',
+  path: '/lixeira',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinhaContaRoute = MinhaContaRouteImport.update({
+  id: '/minha-conta',
+  path: '/minha-conta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RascunhosRoute = RascunhosRouteImport.update({
+  id: '/rascunhos',
+  path: '/rascunhos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpamRoute = SpamRouteImport.update({
+  id: '/spam',
+  path: '/spam',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArmazenamentoRoute = AdminArmazenamentoRouteImport.update({
+  id: '/armazenamento',
+  path: '/armazenamento',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContasRoute = AdminContasRouteImport.update({
+  id: '/contas',
+  path: '/contas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDominiosRoute = AdminDominiosRouteImport.update({
+  id: '/dominios',
+  path: '/dominios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEstatisticasRoute = AdminEstatisticasRouteImport.update({
+  id: '/estatisticas',
+  path: '/estatisticas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
+  id: '/usuarios',
+  path: '/usuarios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const PastaSlugRoute = PastaSlugRouteImport.update({
+  id: '/pasta/$slug',
+  path: '/pasta/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
+  '/contatos': typeof ContatosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
+  '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
+  '/contatos': typeof ContatosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
+  '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/arquivados': typeof ArquivadosRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/contas': typeof ContasRoute
+  '/contatos': typeof ContatosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
+  '/minha-conta': typeof MinhaContaRoute
+  '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/usuarios': typeof AdminUsuariosRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/adiados'
+    | '/admin'
+    | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
+    | '/contatos'
+    | '/enviados'
+    | '/favoritos'
+    | '/lixeira'
+    | '/minha-conta'
+    | '/rascunhos'
+    | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
+    | '/admin/usuarios'
+    | '/pasta/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/adiados'
+    | '/admin'
+    | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
+    | '/contatos'
+    | '/enviados'
+    | '/favoritos'
+    | '/lixeira'
+    | '/minha-conta'
+    | '/rascunhos'
+    | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
+    | '/admin/usuarios'
+    | '/pasta/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/adiados'
+    | '/admin'
+    | '/arquivados'
+    | '/configuracoes'
+    | '/contas'
+    | '/contatos'
+    | '/enviados'
+    | '/favoritos'
+    | '/lixeira'
+    | '/minha-conta'
+    | '/rascunhos'
+    | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
+    | '/admin/usuarios'
+    | '/pasta/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdiadosRoute: typeof AdiadosRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ArquivadosRoute: typeof ArquivadosRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  ContasRoute: typeof ContasRoute
+  ContatosRoute: typeof ContatosRoute
+  EnviadosRoute: typeof EnviadosRoute
+  FavoritosRoute: typeof FavoritosRoute
+  LixeiraRoute: typeof LixeiraRoute
+  MinhaContaRoute: typeof MinhaContaRoute
+  RascunhosRoute: typeof RascunhosRoute
+  SpamRoute: typeof SpamRoute
+  PastaSlugRoute: typeof PastaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +293,177 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/adiados': {
+      id: '/adiados'
+      path: '/adiados'
+      fullPath: '/adiados'
+      preLoaderRoute: typeof AdiadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arquivados': {
+      id: '/arquivados'
+      path: '/arquivados'
+      fullPath: '/arquivados'
+      preLoaderRoute: typeof ArquivadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contas': {
+      id: '/contas'
+      path: '/contas'
+      fullPath: '/contas'
+      preLoaderRoute: typeof ContasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatos': {
+      id: '/contatos'
+      path: '/contatos'
+      fullPath: '/contatos'
+      preLoaderRoute: typeof ContatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enviados': {
+      id: '/enviados'
+      path: '/enviados'
+      fullPath: '/enviados'
+      preLoaderRoute: typeof EnviadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lixeira': {
+      id: '/lixeira'
+      path: '/lixeira'
+      fullPath: '/lixeira'
+      preLoaderRoute: typeof LixeiraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minha-conta': {
+      id: '/minha-conta'
+      path: '/minha-conta'
+      fullPath: '/minha-conta'
+      preLoaderRoute: typeof MinhaContaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rascunhos': {
+      id: '/rascunhos'
+      path: '/rascunhos'
+      fullPath: '/rascunhos'
+      preLoaderRoute: typeof RascunhosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spam': {
+      id: '/spam'
+      path: '/spam'
+      fullPath: '/spam'
+      preLoaderRoute: typeof SpamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/armazenamento': {
+      id: '/admin/armazenamento'
+      path: '/armazenamento'
+      fullPath: '/admin/armazenamento'
+      preLoaderRoute: typeof AdminArmazenamentoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/contas': {
+      id: '/admin/contas'
+      path: '/contas'
+      fullPath: '/admin/contas'
+      preLoaderRoute: typeof AdminContasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dominios': {
+      id: '/admin/dominios'
+      path: '/dominios'
+      fullPath: '/admin/dominios'
+      preLoaderRoute: typeof AdminDominiosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/estatisticas': {
+      id: '/admin/estatisticas'
+      path: '/estatisticas'
+      fullPath: '/admin/estatisticas'
+      preLoaderRoute: typeof AdminEstatisticasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/usuarios': {
+      id: '/admin/usuarios'
+      path: '/usuarios'
+      fullPath: '/admin/usuarios'
+      preLoaderRoute: typeof AdminUsuariosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/pasta/$slug': {
+      id: '/pasta/$slug'
+      path: '/pasta/$slug'
+      fullPath: '/pasta/$slug'
+      preLoaderRoute: typeof PastaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminArmazenamentoRoute: typeof AdminArmazenamentoRoute
+  AdminContasRoute: typeof AdminContasRoute
+  AdminDominiosRoute: typeof AdminDominiosRoute
+  AdminEstatisticasRoute: typeof AdminEstatisticasRoute
+  AdminLogsRoute: typeof AdminLogsRoute
+  AdminUsuariosRoute: typeof AdminUsuariosRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminArmazenamentoRoute: AdminArmazenamentoRoute,
+  AdminContasRoute: AdminContasRoute,
+  AdminDominiosRoute: AdminDominiosRoute,
+  AdminEstatisticasRoute: AdminEstatisticasRoute,
+  AdminLogsRoute: AdminLogsRoute,
+  AdminUsuariosRoute: AdminUsuariosRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdiadosRoute: AdiadosRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ArquivadosRoute: ArquivadosRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  ContasRoute: ContasRoute,
+  ContatosRoute: ContatosRoute,
+  EnviadosRoute: EnviadosRoute,
+  FavoritosRoute: FavoritosRoute,
+  LixeiraRoute: LixeiraRoute,
+  MinhaContaRoute: MinhaContaRoute,
+  RascunhosRoute: RascunhosRoute,
+  SpamRoute: SpamRoute,
+  PastaSlugRoute: PastaSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
