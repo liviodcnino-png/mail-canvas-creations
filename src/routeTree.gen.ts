@@ -14,7 +14,10 @@ import { Route as AdiadosRouteImport } from './routes/adiados'
 import { Route as ArquivadosRouteImport } from './routes/arquivados'
 import { Route as EnviadosRouteImport } from './routes/enviados'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as LixeiraRouteImport } from './routes/lixeira'
 import { Route as RascunhosRouteImport } from './routes/rascunhos'
+import { Route as SpamRouteImport } from './routes/spam'
+import { Route as PastaSlugRouteImport } from './routes/pasta.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,9 +44,24 @@ const FavoritosRoute = FavoritosRouteImport.update({
   path: '/favoritos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LixeiraRoute = LixeiraRouteImport.update({
+  id: '/lixeira',
+  path: '/lixeira',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RascunhosRoute = RascunhosRouteImport.update({
   id: '/rascunhos',
   path: '/rascunhos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpamRoute = SpamRouteImport.update({
+  id: '/spam',
+  path: '/spam',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PastaSlugRoute = PastaSlugRouteImport.update({
+  id: '/pasta/$slug',
+  path: '/pasta/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -53,7 +71,10 @@ export interface FileRoutesByFullPath {
   '/arquivados': typeof ArquivadosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
   '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +82,10 @@ export interface FileRoutesByTo {
   '/arquivados': typeof ArquivadosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
   '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,15 +94,34 @@ export interface FileRoutesById {
   '/arquivados': typeof ArquivadosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
+  '/lixeira': typeof LixeiraRoute
   '/rascunhos': typeof RascunhosRoute
+  '/spam': typeof SpamRoute
+  '/pasta/$slug': typeof PastaSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/adiados' | '/arquivados' | '/enviados' | '/favoritos' | '/rascunhos'
+    | '/'
+    | '/adiados'
+    | '/arquivados'
+    | '/enviados'
+    | '/favoritos'
+    | '/lixeira'
+    | '/rascunhos'
+    | '/spam'
+    | '/pasta/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/adiados' | '/arquivados' | '/enviados' | '/favoritos' | '/rascunhos'
+    | '/'
+    | '/adiados'
+    | '/arquivados'
+    | '/enviados'
+    | '/favoritos'
+    | '/lixeira'
+    | '/rascunhos'
+    | '/spam'
+    | '/pasta/$slug'
   id:
     | '__root__'
     | '/'
@@ -86,7 +129,10 @@ export interface FileRouteTypes {
     | '/arquivados'
     | '/enviados'
     | '/favoritos'
+    | '/lixeira'
     | '/rascunhos'
+    | '/spam'
+    | '/pasta/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,7 +141,10 @@ export interface RootRouteChildren {
   ArquivadosRoute: typeof ArquivadosRoute
   EnviadosRoute: typeof EnviadosRoute
   FavoritosRoute: typeof FavoritosRoute
+  LixeiraRoute: typeof LixeiraRoute
   RascunhosRoute: typeof RascunhosRoute
+  SpamRoute: typeof SpamRoute
+  PastaSlugRoute: typeof PastaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,11 +184,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lixeira': {
+      id: '/lixeira'
+      path: '/lixeira'
+      fullPath: '/lixeira'
+      preLoaderRoute: typeof LixeiraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rascunhos': {
       id: '/rascunhos'
       path: '/rascunhos'
       fullPath: '/rascunhos'
       preLoaderRoute: typeof RascunhosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spam': {
+      id: '/spam'
+      path: '/spam'
+      fullPath: '/spam'
+      preLoaderRoute: typeof SpamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pasta/$slug': {
+      id: '/pasta/$slug'
+      path: '/pasta/$slug'
+      fullPath: '/pasta/$slug'
+      preLoaderRoute: typeof PastaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -151,7 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   ArquivadosRoute: ArquivadosRoute,
   EnviadosRoute: EnviadosRoute,
   FavoritosRoute: FavoritosRoute,
+  LixeiraRoute: LixeiraRoute,
   RascunhosRoute: RascunhosRoute,
+  SpamRoute: SpamRoute,
+  PastaSlugRoute: PastaSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
