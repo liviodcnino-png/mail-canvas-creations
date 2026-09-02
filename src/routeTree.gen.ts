@@ -22,6 +22,11 @@ import { Route as LixeiraRouteImport } from './routes/lixeira'
 import { Route as MinhaContaRouteImport } from './routes/minha-conta'
 import { Route as RascunhosRouteImport } from './routes/rascunhos'
 import { Route as SpamRouteImport } from './routes/spam'
+import { Route as AdminArmazenamentoRouteImport } from './routes/admin.armazenamento'
+import { Route as AdminContasRouteImport } from './routes/admin.contas'
+import { Route as AdminDominiosRouteImport } from './routes/admin.dominios'
+import { Route as AdminEstatisticasRouteImport } from './routes/admin.estatisticas'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
 import { Route as AdminUsuariosRouteImport } from './routes/admin.usuarios'
 import { Route as PastaSlugRouteImport } from './routes/pasta.$slug'
 
@@ -90,6 +95,31 @@ const SpamRoute = SpamRouteImport.update({
   path: '/spam',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminArmazenamentoRoute = AdminArmazenamentoRouteImport.update({
+  id: '/armazenamento',
+  path: '/armazenamento',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContasRoute = AdminContasRouteImport.update({
+  id: '/contas',
+  path: '/contas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDominiosRoute = AdminDominiosRouteImport.update({
+  id: '/dominios',
+  path: '/dominios',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEstatisticasRoute = AdminEstatisticasRouteImport.update({
+  id: '/estatisticas',
+  path: '/estatisticas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminUsuariosRoute = AdminUsuariosRouteImport.update({
   id: '/usuarios',
   path: '/usuarios',
@@ -115,6 +145,11 @@ export interface FileRoutesByFullPath {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
@@ -132,6 +167,11 @@ export interface FileRoutesByTo {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
@@ -150,6 +190,11 @@ export interface FileRoutesById {
   '/minha-conta': typeof MinhaContaRoute
   '/rascunhos': typeof RascunhosRoute
   '/spam': typeof SpamRoute
+  '/admin/armazenamento': typeof AdminArmazenamentoRoute
+  '/admin/contas': typeof AdminContasRoute
+  '/admin/dominios': typeof AdminDominiosRoute
+  '/admin/estatisticas': typeof AdminEstatisticasRoute
+  '/admin/logs': typeof AdminLogsRoute
   '/admin/usuarios': typeof AdminUsuariosRoute
   '/pasta/$slug': typeof PastaSlugRoute
 }
@@ -169,6 +214,11 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
     | '/admin/usuarios'
     | '/pasta/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -186,6 +236,11 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
     | '/admin/usuarios'
     | '/pasta/$slug'
   id:
@@ -203,6 +258,11 @@ export interface FileRouteTypes {
     | '/minha-conta'
     | '/rascunhos'
     | '/spam'
+    | '/admin/armazenamento'
+    | '/admin/contas'
+    | '/admin/dominios'
+    | '/admin/estatisticas'
+    | '/admin/logs'
     | '/admin/usuarios'
     | '/pasta/$slug'
   fileRoutesById: FileRoutesById
@@ -317,6 +377,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/armazenamento': {
+      id: '/admin/armazenamento'
+      path: '/armazenamento'
+      fullPath: '/admin/armazenamento'
+      preLoaderRoute: typeof AdminArmazenamentoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/contas': {
+      id: '/admin/contas'
+      path: '/contas'
+      fullPath: '/admin/contas'
+      preLoaderRoute: typeof AdminContasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dominios': {
+      id: '/admin/dominios'
+      path: '/dominios'
+      fullPath: '/admin/dominios'
+      preLoaderRoute: typeof AdminDominiosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/estatisticas': {
+      id: '/admin/estatisticas'
+      path: '/estatisticas'
+      fullPath: '/admin/estatisticas'
+      preLoaderRoute: typeof AdminEstatisticasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/usuarios': {
       id: '/admin/usuarios'
       path: '/usuarios'
@@ -335,10 +430,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminArmazenamentoRoute: typeof AdminArmazenamentoRoute
+  AdminContasRoute: typeof AdminContasRoute
+  AdminDominiosRoute: typeof AdminDominiosRoute
+  AdminEstatisticasRoute: typeof AdminEstatisticasRoute
+  AdminLogsRoute: typeof AdminLogsRoute
   AdminUsuariosRoute: typeof AdminUsuariosRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminArmazenamentoRoute: AdminArmazenamentoRoute,
+  AdminContasRoute: AdminContasRoute,
+  AdminDominiosRoute: AdminDominiosRoute,
+  AdminEstatisticasRoute: AdminEstatisticasRoute,
+  AdminLogsRoute: AdminLogsRoute,
   AdminUsuariosRoute: AdminUsuariosRoute,
 }
 
