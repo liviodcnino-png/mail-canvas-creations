@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdiadosRouteImport } from './routes/adiados'
 import { Route as ArquivadosRouteImport } from './routes/arquivados'
+import { Route as ContatosRouteImport } from './routes/contatos'
 import { Route as EnviadosRouteImport } from './routes/enviados'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as LixeiraRouteImport } from './routes/lixeira'
@@ -32,6 +33,11 @@ const AdiadosRoute = AdiadosRouteImport.update({
 const ArquivadosRoute = ArquivadosRouteImport.update({
   id: '/arquivados',
   path: '/arquivados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatosRoute = ContatosRouteImport.update({
+  id: '/contatos',
+  path: '/contatos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnviadosRoute = EnviadosRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/adiados': typeof AdiadosRoute
   '/arquivados': typeof ArquivadosRoute
+  '/contatos': typeof ContatosRoute
   '/enviados': typeof EnviadosRoute
   '/favoritos': typeof FavoritosRoute
   '/lixeira': typeof LixeiraRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/adiados'
     | '/arquivados'
+    | '/contatos'
     | '/enviados'
     | '/favoritos'
     | '/lixeira'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdiadosRoute: typeof AdiadosRoute
   ArquivadosRoute: typeof ArquivadosRoute
+  ContatosRoute: typeof ContatosRoute
   EnviadosRoute: typeof EnviadosRoute
   FavoritosRoute: typeof FavoritosRoute
   LixeiraRoute: typeof LixeiraRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/arquivados'
       fullPath: '/arquivados'
       preLoaderRoute: typeof ArquivadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contatos': {
+      id: '/contatos'
+      path: '/contatos'
+      fullPath: '/contatos'
+      preLoaderRoute: typeof ContatosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enviados': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdiadosRoute: AdiadosRoute,
   ArquivadosRoute: ArquivadosRoute,
+  ContatosRoute: ContatosRoute,
   EnviadosRoute: EnviadosRoute,
   FavoritosRoute: FavoritosRoute,
   LixeiraRoute: LixeiraRoute,
