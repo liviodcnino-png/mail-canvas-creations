@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdiadosRouteImport } from './routes/adiados'
+import { Route as ArquivadosRouteImport } from './routes/arquivados'
+import { Route as EnviadosRouteImport } from './routes/enviados'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as RascunhosRouteImport } from './routes/rascunhos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdiadosRoute = AdiadosRouteImport.update({
+  id: '/adiados',
+  path: '/adiados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArquivadosRoute = ArquivadosRouteImport.update({
+  id: '/arquivados',
+  path: '/arquivados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnviadosRoute = EnviadosRouteImport.update({
+  id: '/enviados',
+  path: '/enviados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RascunhosRoute = RascunhosRouteImport.update({
+  id: '/rascunhos',
+  path: '/rascunhos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/arquivados': typeof ArquivadosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/rascunhos': typeof RascunhosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/arquivados': typeof ArquivadosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/rascunhos': typeof RascunhosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/adiados': typeof AdiadosRoute
+  '/arquivados': typeof ArquivadosRoute
+  '/enviados': typeof EnviadosRoute
+  '/favoritos': typeof FavoritosRoute
+  '/rascunhos': typeof RascunhosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/adiados' | '/arquivados' | '/enviados' | '/favoritos' | '/rascunhos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/adiados' | '/arquivados' | '/enviados' | '/favoritos' | '/rascunhos'
+  id:
+    | '__root__'
+    | '/'
+    | '/adiados'
+    | '/arquivados'
+    | '/enviados'
+    | '/favoritos'
+    | '/rascunhos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdiadosRoute: typeof AdiadosRoute
+  ArquivadosRoute: typeof ArquivadosRoute
+  EnviadosRoute: typeof EnviadosRoute
+  FavoritosRoute: typeof FavoritosRoute
+  RascunhosRoute: typeof RascunhosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/adiados': {
+      id: '/adiados'
+      path: '/adiados'
+      fullPath: '/adiados'
+      preLoaderRoute: typeof AdiadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arquivados': {
+      id: '/arquivados'
+      path: '/arquivados'
+      fullPath: '/arquivados'
+      preLoaderRoute: typeof ArquivadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/enviados': {
+      id: '/enviados'
+      path: '/enviados'
+      fullPath: '/enviados'
+      preLoaderRoute: typeof EnviadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rascunhos': {
+      id: '/rascunhos'
+      path: '/rascunhos'
+      fullPath: '/rascunhos'
+      preLoaderRoute: typeof RascunhosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdiadosRoute: AdiadosRoute,
+  ArquivadosRoute: ArquivadosRoute,
+  EnviadosRoute: EnviadosRoute,
+  FavoritosRoute: FavoritosRoute,
+  RascunhosRoute: RascunhosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
